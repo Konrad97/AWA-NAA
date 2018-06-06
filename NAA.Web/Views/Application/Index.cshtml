@@ -1,0 +1,77 @@
+﻿@model IEnumerable<NAA.Shared.Models.Application>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Confirmed)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Id)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Uninverity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CourseId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PersonalStatement)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.OfferState)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TeacherReference)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TeacherContact)
+                </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Confirmed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Uninverity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PersonalStatement)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.OfferState)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeacherReference)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TeacherContact)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
