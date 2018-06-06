@@ -52,6 +52,7 @@
     <Compile Include="ApplicantDataService.cs" />
     <Compile Include="ApplicationDataService.cs" />
     <Compile Include="DataServiceFactory.cs" />
+    <Compile Include="Initializer.cs" />
     <Compile Include="NAAModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
