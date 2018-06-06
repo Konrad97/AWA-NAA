@@ -2,7 +2,7 @@
 
 namespace NAA.Shared.Interfaces
 {
-    public interface IApplicatService
+    public interface IApplicantService
     {
 
         Applicant GetApplicant(string email);

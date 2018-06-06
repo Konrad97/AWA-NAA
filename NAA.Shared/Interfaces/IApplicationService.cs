@@ -10,6 +10,8 @@ namespace NAA.Shared.Interfaces
 
         void EditApplication(Application application);
 
+        void DeleteApplication(Application application);
+
         List<Application> GetApplications(int applicatId);
 
         List<Application> GetApplications(string university);
