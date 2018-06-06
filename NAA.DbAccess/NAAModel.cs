@@ -22,6 +22,8 @@ namespace NAA.DbAccess
             modelBuilder.Entity<Conformation>().HasKey(x => x.Applicat);
 
             modelBuilder.Entity<Applicant>().HasIndex(x => x.Email).IsUnique();
+
+
         }
     }
 }

@@ -2,21 +2,20 @@
 
 namespace NAA.DbAccess
 {
-    public class DataServiceFactory
+    public static class DataServiceFactory
     {
 
-        private readonly NaaModel _context = new NaaModel();
+        private static readonly NaaModel Context = new NaaModel();
 
-        public IApplicationService GetApplicatService()
+        public static IApplicationService GetApplicationService()
         {
-            return new ApplicationDataService(_context);
+            return new ApplicationDataService(Context);
         }
 
-        public IApplicantService GetApplicantService()
+        public static IApplicantService GetApplicantService()
         {
-            return new ApplicantDataService(_context);
+            return new ApplicantDataService(Context);
         }
-
 
     }
 }
