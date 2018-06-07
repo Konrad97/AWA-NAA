@@ -116,5 +116,35 @@ namespace NAA.Service
             return true;
         }
 
+        public bool CanEditApplication(string university, Application application, OfferState offerState, out string reason)
+        {
+            reason = null;
+
+            if (application == null)
+            {
+                reason = "Application was not Found.";
+                return false;
+            }
+
+            if (application.University != university)
+            {
+                reason = "Permission Denied.";
+                return false;
+            }
+
+            if (application.OfferState != OfferState.Conditional && application.OfferState != OfferState.Pending)
+            {
+                reason = "Offerstate can not be modified.";
+                return false;
+            }
+
+            if (application.OfferState == OfferState.Conditional && offerState != OfferState.Unconditional)
+            {
+                reason = "Conditional Offer State can only be set to Unconditional.";
+                return false;
+            }
+
+            return true;
+        }
     }
 }

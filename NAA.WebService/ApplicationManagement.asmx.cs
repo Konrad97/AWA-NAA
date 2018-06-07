@@ -1,10 +1,7 @@
 ﻿using NAA.Service;
 using NAA.Shared.Model;
 using NAA.Shared.Service;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 
@@ -21,7 +18,7 @@ namespace NAA.Webservice
     public class ApplicationManagement : System.Web.Services.WebService
     {
 
-        private readonly IApplicationService _service = new ApplicationService();
+        private readonly ApplicationService _service = new ApplicationService();
 
         [WebMethod]
         public List<Application> GetApplications(string university)
@@ -34,20 +31,13 @@ namespace NAA.Webservice
         [WebMethod]
         public Application SetApplicationsStatus(string university, int applicationId, OfferState offerState, string comment = "")
         {
+
             var application = _service.GetApplication(applicationId);
 
-            if (application == null)
-                throw new SoapException("Application was not Found.", SoapException.ClientFaultCode);
-
-            if (application.University != university)
-                throw new SoapException("Permission Denied.", SoapException.ClientFaultCode);
-
-            if (application.OfferState != OfferState.Conditional && application.OfferState != OfferState.Pending)
-                throw new SoapException("Offerstate can not be modified.", SoapException.ClientFaultCode);
-
-            if (application.OfferState == OfferState.Conditional && offerState != OfferState.Unconditional)
-                throw new SoapException("Conditional Offer State can only be set to Unconditional.",
-                    SoapException.ClientFaultCode);
+            if (!_service.CanEditApplication(university, application, offerState, out string reason))
+            {
+                throw new SoapException(reason, SoapException.ClientFaultCode);
+            }
 
             application.OfferState = offerState;
             application.Comment = comment;
