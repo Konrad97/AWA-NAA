@@ -1,7 +1,5 @@
-﻿using Naa.Shared.Service;
-using NAA.Service;
+﻿using NAA.Service;
 using NAA.Shared.Model;
-using NAA.Shared.Service;
 using NAA.Web.Models.Apply;
 using System.Linq;
 using System.Web.Mvc;
@@ -16,8 +14,13 @@ namespace NAA.Web.Controllers
 
         public ActionResult University(int applicantId)
         {
-            ViewBag.ApplicantId = applicantId;
-            return View(_courseService.GetUniversities());
+            var viewModel = new UniversityViewModel
+            {
+                ApplicantId = applicantId,
+                Universities = _courseService.GetUniversities()
+            };
+
+            return View(viewModel);
         }
 
         public ActionResult Course(int applicantId, string university)
@@ -48,7 +51,7 @@ namespace NAA.Web.Controllers
 
         public ActionResult Apply(int applicantId, string university, int courseId, string courseName)
         {
-            return View(new Application()
+            return View(new Application
             {
                 ApplicantId = applicantId,
                 University = university,

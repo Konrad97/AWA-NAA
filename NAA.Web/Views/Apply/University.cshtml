@@ -1,14 +1,14 @@
-﻿@model IEnumerable<string>
+﻿@model NAA.Web.Models.Apply.UniversityViewModel
 
 <h2>Universities</h2>
 
 <table class="table">
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.Universities)
     {
         <tr>
             <td>
-                @Html.ActionLink(item, "Course", new { applicantId = ViewBag.ApplicantId, university = item }, null)
+                @Html.ActionLink(item, "Course", new { applicantId = Model.ApplicantId, university = item }, null)
             </td>
         </tr>
     }

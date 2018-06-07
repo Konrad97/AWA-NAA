@@ -12,7 +12,7 @@ namespace NAA.Service
     public class ApplicationService : IApplicationService
     {
         private IApplicationService _applicationService = new ApplicationDataService();
-        private IConformationService  _conformationService = new ConformationService();
+        private IConformationService _conformationService = new ConformationService();
         private IApplicantService _applicantService = new ApplicantDataService();
 
         public void AddApplication(Application application)
