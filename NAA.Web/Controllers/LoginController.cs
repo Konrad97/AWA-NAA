@@ -1,10 +1,6 @@
 ﻿using Naa.Shared.Service;
 using NAA.Service;
 using NAA.Web.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NAA.Web.Controllers
@@ -15,22 +11,43 @@ namespace NAA.Web.Controllers
         private IApplicantService _service = new ApplicantService();
 
         // GET: Login
-        public ActionResult Index()
+        public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Index(LoginFormData formData)
+        public ActionResult Login(LoginFormData formData)
         {
             var applicant = _service.GetApplicant(formData.Email);
 
             if(applicant != null)
             {
-                return RedirectToAction("GetApplications", "Application", new { applicantId = applicant.Id });
+                return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
             }
 
-            return View("Index", new LoginFormData { InvalidEmail = true });
+            return View("Login", new LoginFormData { InvalidEmail = true });
         }
+
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Register(Shared.Model.Applicant applicant)
+        {
+            try
+            {
+                _service.AddApplicant(applicant);
+
+                return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
     }
 }
