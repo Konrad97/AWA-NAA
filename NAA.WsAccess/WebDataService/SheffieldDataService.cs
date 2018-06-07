@@ -1,17 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using NAA.WsAccess.uk.ac.shu.hallam.webteach_net;
+using System.Collections.Generic;
 using System.Linq;
-using Course = NAA.Shared.Model.Course;
-using NAA.WsAccess.SheffieldWebService;
-
 
 namespace NAA.WsAccess.WebDataService
 {
     class SheffieldDataService : IDataService
     {
-        readonly SheffieldWebService.SheffieldWebService _ws = new SheffieldWebService.SheffieldWebService();
-        public List<Course> GetCourses()
+        readonly SheffieldWebService _ws = new SheffieldWebService();
+        public List<Shared.Model.Course> GetCourses()
         {
-            return _ws.SheffCourses().Select(x => new Course()
+            return _ws.SheffCourses().Select(x => new Shared.Model.Course()
             {
                 Description = x.Description,
                 EntryRequirements = x.EntryReq,
@@ -22,5 +20,4 @@ namespace NAA.WsAccess.WebDataService
             }).ToList();
         }
     }
-}
 }

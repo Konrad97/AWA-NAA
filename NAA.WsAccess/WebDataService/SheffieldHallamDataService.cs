@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NAA.Shared.Model;
-using NAA.WsAccess.SheffieldHallamWebService;
+using NAA.WsAccess.uk.ac.shu.hallam.webteach_net1;
 
 namespace NAA.WsAccess.WebDataService
 {

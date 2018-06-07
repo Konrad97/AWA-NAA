@@ -1,12 +1,12 @@
-﻿using System;
+﻿using NAA.Shared.Model;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Naa.Shared.Service
 {
-    class ICourseService
+    public interface ICourseService
     {
+
+        List<Course> GetCourses(string university);
+
     }
 }

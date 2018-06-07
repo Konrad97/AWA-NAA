@@ -32,6 +32,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,26 +44,95 @@
   <ItemGroup>
     <Compile Include="CourseDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Web References\uk.ac.shu.hallam.webteach_net1\Reference.cs" />
-    <Compile Include="Web References\uk.ac.shu.hallam.webteach_net\Reference.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\uk.ac.shu.hallam.webteach_net1\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <Compile Include="Web References\uk.ac.shu.hallam.webteach_net\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
     <Compile Include="WebDataService\IDataService.cs" />
     <Compile Include="WebDataService\SheffieldDataService.cs" />
     <Compile Include="WebDataService\SheffieldHallamDataService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\Reference.map" />
-    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUCourse.datasource" />
-    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUCourseShort.datasource" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUCourse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUCourseShort.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUWebService.wsdl" />
-    <None Include="Web References\uk.ac.shu.hallam.webteach_net\Course.datasource" />
-    <None Include="Web References\uk.ac.shu.hallam.webteach_net\Reference.map" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\Course.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <None Include="Web References\uk.ac.shu.hallam.webteach_net\SheffieldWebService.wsdl" />
-    <None Include="Web References\uk.ac.shu.hallam.webteach_net\SSheffCourse.datasource" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\SSheffCourse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUWebService.disco" />
-    <Content Include="Web References\uk.ac.shu.hallam.webteach_net\SheffieldWebService.disco" />
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://webteach_net.hallam.shu.ac.uk/cmsmr2/SheffieldWebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\uk.ac.shu.hallam.webteach_net\</RelPath>
+      <UpdateFromURL>http://webteach_net.hallam.shu.ac.uk/cmsmr2/SheffieldWebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NAA_WsAccess_uk_ac_shu_hallam_webteach_net_SheffieldWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+    <WebReferenceUrl Include="http://webteach_net.hallam.shu.ac.uk/cmsmr2/SHUWebService.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\uk.ac.shu.hallam.webteach_net1\</RelPath>
+      <UpdateFromURL>http://webteach_net.hallam.shu.ac.uk/cmsmr2/SHUWebService.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>NAA_WsAccess_uk_ac_shu_hallam_webteach_net1_SHUWebService</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\SheffieldWebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUWebService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Naa.Shared\Naa.Shared.csproj">
+      <Project>{f37173e7-97b0-4724-a070-185f247454dc}</Project>
+      <Name>Naa.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
