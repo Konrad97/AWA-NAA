@@ -17,7 +17,7 @@ namespace NAA.DbAccess
 
         static NaaDbModel()
         {
-            Database.SetInitializer(new DropCreateDatabaseAlways<NaaDbModel>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<NaaDbModel>());
         }
 
         public NaaDbModel()

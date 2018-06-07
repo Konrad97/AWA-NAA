@@ -16,13 +16,18 @@ namespace NAA.WsAccess
         public CourseDataService()
         {
             _universities = new Dictionary<string, IDataService>();
-            _universities.Add("sheffield", new SheffieldDataService());
-            _universities.Add("sheffield-hallam", new SheffieldHallamDataService());
+            _universities.Add("Sheffield", new SheffieldDataService());
+            _universities.Add("Sheffield Hallam", new SheffieldHallamDataService());
         }
 
         public List<Course> GetCourses(string university)
         {
             return _universities[university.ToLower()].GetCourses();
+        }
+
+        public List<string> GetUniversities()
+        {
+            return _universities.Keys.ToList();
         }
     }
 }

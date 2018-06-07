@@ -51,7 +51,7 @@ namespace NAA.Web.Controllers
             {
                 _service.AddApplication(application);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetApplications", new { applicantId = application.ApplicantId });
             }
             catch
             {

@@ -8,5 +8,7 @@ namespace Naa.Shared.Service
 
         List<Course> GetCourses(string university);
 
+        List<string> GetUniversities();
+
     }
 }

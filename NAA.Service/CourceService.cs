@@ -14,5 +14,10 @@ namespace NAA.Service
         {
             return _service.GetCourses(university);
         }
+
+        public List<string> GetUniversities()
+        {
+            return _service.GetUniversities();
+        }
     }
 }

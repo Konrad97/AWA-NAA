@@ -23,14 +23,14 @@ namespace NAA.Web.Controllers
         }
 
         // GET: Applicant/Create
-        public ActionResult Create()
+        public ActionResult Register()
         {
             return View();
         }
 
         // POST: Applicant/Create
         [HttpPost]
-        public ActionResult Create(Applicant applicant)
+        public ActionResult Register(Applicant applicant)
         {
             try
             {

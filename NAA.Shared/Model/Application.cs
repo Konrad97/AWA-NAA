@@ -15,6 +15,8 @@
 
         public int CourseId { get; set; }
 
+        public string CourseName { get; set; }
+
         public string PersonalStatement { get; set; }
 
         public OfferState OfferState { get; set; }

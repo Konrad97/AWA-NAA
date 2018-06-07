@@ -18,18 +18,8 @@
             @Html.DisplayNameFor(model => model.Applications[0].Uninverity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Applications[0].CourseId)
+            @Html.DisplayNameFor(model => model.Applications[0].CourseName)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Applications[0].PersonalStatement)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Applications[0].TeacherReference)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Applications[0].TeacherContact)
-        </th>
-        <th></th>
     </tr>
 
 @foreach (var item in Model.Applications) {
@@ -41,16 +31,7 @@
             @Html.DisplayFor(modelItem => item.Uninverity)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.CourseId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PersonalStatement)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeacherReference)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.TeacherContact)
+            @Html.DisplayFor(modelItem => item.CourseName)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
