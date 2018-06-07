@@ -20,7 +20,7 @@ namespace NAA.DbAccess
         public NaaDbModel()
         {
             Configuration.ProxyCreationEnabled = false;
-            Database.Connection.ConnectionString = "data source=Julian-Notebook;initial catalog=NAA;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            Database.Connection.ConnectionString = "Data Source = (LocalDB)\\MSSQLLocalDB; AttachDbFilename = 'C:\\Users\\Konrad Melzer\\Desktop\\AWA-NAA\\NAA.DbAccess\\Database1.mdf'; Integrated Security = True";
         }
         
 
