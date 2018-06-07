@@ -21,6 +21,8 @@
 
         public OfferState OfferState { get; set; } = OfferState.Pending;
 
+        public string Comment { get; set; }
+
         public string TeacherReference { get; set; }
 
         public string TeacherContact { get; set; }
