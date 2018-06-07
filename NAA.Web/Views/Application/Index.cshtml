@@ -6,53 +6,62 @@
 
 <h2>Applications</h2>
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Applications[0].Confirmed)
-        </th>
-        <th>
-            @Html.DisplayName("State")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Applications[0].University)
-        </th>
-        <th>
-            @Html.DisplayName("Course Name")
-        </th>
-    </tr>
+@if (Model != null && Model.Applications.Count > 0)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Applications[0].Confirmed)
+            </th>
+            <th>
+                @Html.DisplayName("State")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Applications[0].University)
+            </th>
+            <th>
+                @Html.DisplayName("Course Name")
+            </th>
+        </tr>
 
-@foreach (var item in Model.Applications) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Confirmed)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.OfferState)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.University)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CourseName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-        </td>
-    </tr>
+        @foreach (var item in Model.Applications)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Confirmed)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.OfferState)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.University)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CourseName)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else
+{
+    <h3>You haven't applied yet</h3>
 }
 
-</table>
-
-@if(Model.Applications.Count < 5)
-{
 <p>
-    @Html.ActionLink("Create New", "University", "Apply", new { applicantId = Model.ApplicantId }, null)
+    @Html.ActionLink("Edit Profile", "Edit", "Applicant", new { id = Model.ApplicantId }, null) |
+    @if (Model.Applications.Count < 5)
+    {
+        @Html.ActionLink("Create New Application", "University", "Apply", new { applicantId = Model.ApplicantId }, null)
+    }
+    else
+    {
+        @Html.Raw("Allready applied to 5 courses")
+    }
 </p>
-} else
-{
-    <p>Allready applied to 5 courses</p>
-}
-

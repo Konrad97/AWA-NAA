@@ -1,9 +1,6 @@
 ﻿using Naa.Shared.Service;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using NAA.Shared.Model;
 
 namespace NAA.DbAccess

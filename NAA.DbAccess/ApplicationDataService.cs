@@ -2,6 +2,7 @@
 using System.Linq;
 using NAA.Shared.Service;
 using NAA.Shared.Model;
+using System;
 
 namespace NAA.DbAccess
 {
@@ -11,6 +12,22 @@ namespace NAA.DbAccess
 
         public void AddApplication(Application application)
         {
+            int count = _context.Applications.Where(x => x.ApplicantId == application.ApplicantId).Count();
+
+            if(count > 4)
+            {
+                throw new InvalidOperationException("Applicant can only have up to 5 applications");
+            }
+
+
+            bool alreadyApplied = _context.Applications.Any(x => x.University == application.University && 
+                                                                 x.CourseId == application.CourseId);
+
+            if(alreadyApplied)
+            {
+                throw new InvalidOperationException("Applicant already applied for this course");
+            }
+
             _context.Applications.Add(application);
             _context.SaveChanges();
         }
@@ -47,5 +64,6 @@ namespace NAA.DbAccess
         {
             return _context.Applications.Find(id);
         }
+
     }
 }

@@ -8,26 +8,26 @@ namespace NAA.Web.Controllers
     public class ApplicantController : Controller
     {
 
-        private readonly IApplicantService _dataService = new ApplicantService();
+        private readonly IApplicantService _service = new ApplicantService();
 
         public ActionResult Details(int id)
         {
-            return View(_dataService.GetApplicant(id));
+            return View(_service.GetApplicant(id));
         }
 
         public ActionResult Edit(int id)
         {
-            return View();
+            return View(_service.GetApplicant(id));
         }
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Applicant applicant)
         {
             try
             {
-                // TODO: Add update logic here
+                _service.EditApplicant(applicant);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
             }
             catch
             {
