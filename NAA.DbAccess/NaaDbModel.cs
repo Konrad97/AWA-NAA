@@ -1,11 +1,8 @@
+using System.Data.Entity;
+using NAA.Shared.Model;
+
 namespace NAA.DbAccess
 {
-    using System;
-    using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
-    using NAA.Shared.Model;
-
     public class NaaDbModel : DbContext
     {
 

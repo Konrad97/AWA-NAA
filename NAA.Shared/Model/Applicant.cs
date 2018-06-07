@@ -19,8 +19,6 @@ namespace NAA.Shared.Model
 
         public string Email { get; set; }
 
-        public string PasswordHash { get; set; }
-
         public virtual ICollection<Application> Applications { get; set; }
 
     }

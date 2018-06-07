@@ -3,9 +3,6 @@ using NAA.DbAccess;
 using NAA.Shared.Model;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NAA.Service
 {
@@ -26,7 +23,7 @@ namespace NAA.Service
 
         public Applicant GetApplicant(int id)
         {
-            throw new NotImplementedException();
+            return _service.GetApplicant(id);
         }
 
         public Applicant GetApplicant(string email)
