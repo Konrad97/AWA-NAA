@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>ed76b3e7-ba9c-44a3-8377-9b932eb9f99e</ProjectGuid>
+    <ProjectGuid>{ED76B3E7-BA9C-44A3-8377-9B932EB9F99E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NAA.WsAccess</RootNamespace>
@@ -30,24 +30,38 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System"/>
-    
-    <Reference Include="System.Core"/>
-    <Reference Include="System.Xml.Linq"/>
-    <Reference Include="System.Data.DataSetExtensions"/>
-    
-    
-    <Reference Include="Microsoft.CSharp"/>
-    
-    <Reference Include="System.Data"/>
-    
-    <Reference Include="System.Net.Http"/>
-    
-    <Reference Include="System.Xml"/>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="CourseDataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web References\uk.ac.shu.hallam.webteach_net1\Reference.cs" />
+    <Compile Include="Web References\uk.ac.shu.hallam.webteach_net\Reference.cs" />
+    <Compile Include="WebDataService\IDataService.cs" />
+    <Compile Include="WebDataService\SheffieldDataService.cs" />
+    <Compile Include="WebDataService\SheffieldHallamDataService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\Reference.map" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUCourse.datasource" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUCourseShort.datasource" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUWebService.wsdl" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\Course.datasource" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\Reference.map" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\SheffieldWebService.wsdl" />
+    <None Include="Web References\uk.ac.shu.hallam.webteach_net\SSheffCourse.datasource" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web References\uk.ac.shu.hallam.webteach_net1\SHUWebService.disco" />
+    <Content Include="Web References\uk.ac.shu.hallam.webteach_net\SheffieldWebService.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
- </Project>
+</Project>
