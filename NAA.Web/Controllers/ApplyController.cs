@@ -48,16 +48,9 @@ namespace NAA.Web.Controllers
         [HttpPost]
         public ActionResult Apply(Application application)
         {
-            try
-            {
-                _applicationService.AddApplication(application);
+            _applicationService.AddApplication(application);
 
-                return RedirectToAction("Index", "Application", new { applicantId = application.ApplicantId });
-            }
-            catch
-            {
-                return View();
-            }
+            return RedirectToAction("Index", "Application", new { applicantId = application.ApplicantId });
         }
 
     }

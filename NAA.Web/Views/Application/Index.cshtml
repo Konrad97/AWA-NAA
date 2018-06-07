@@ -56,12 +56,12 @@ else
 
 <p>
     @Html.ActionLink("Edit Profile", "Edit", "Applicant", new { id = Model.ApplicantId }, null) |
-    @if (Model.Applications.Count < 5)
+    @if (Model.CanAddApplications)
     {
         @Html.ActionLink("Create New Application", "University", "Apply", new { applicantId = Model.ApplicantId }, null)
     }
     else
     {
-        @Html.Raw("Allready applied to 5 courses")
+        @Html.Raw(Model.CanNotAddApplicationsReason)
     }
 </p>

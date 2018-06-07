@@ -10,13 +10,20 @@ namespace NAA.Web.Controllers
     public class ApplicationController : Controller
     {
 
-        private readonly IApplicationService _service = new ApplicationService();
+        private readonly ApplicationService _service = new ApplicationService();
 
         public ActionResult Index(int applicantId)
         {
+            var canAdd = _service.CanAddApplication(applicantId, out string reson);
+
             var applications = _service.GetApplicationsByApplicantId(applicantId);
 
-            var viewModel = new ApplicationViewModel { ApplicantId = applicantId, Applications = applications };
+            var viewModel = new ApplicationViewModel {
+                ApplicantId = applicantId,
+                Applications = applications,
+                CanAddApplications = canAdd,
+                CanNotAddApplicationsReason = reson
+            };
 
             return View("Index", viewModel);
         }

@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="ApplicantDataService.cs" />
     <Compile Include="ApplicationDataService.cs" />
+    <Compile Include="ConformationService.cs" />
     <Compile Include="NaaDbModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

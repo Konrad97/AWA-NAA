@@ -10,5 +10,9 @@ namespace NAA.Web.Models
 
         public int ApplicantId { get; set; }
 
+        public bool CanAddApplications { get; set; }
+
+        public string CanNotAddApplicationsReason { get; set; }
+
     }
 }

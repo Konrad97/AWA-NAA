@@ -29,7 +29,7 @@ namespace NAA.WebServer
         [WebMethod]
         public List<Application> GetApplications(string university)
         {
-            
+            return null;
         }
     }
 }
