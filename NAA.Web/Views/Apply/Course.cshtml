@@ -1,62 +1,58 @@
-﻿@model IEnumerable<NAA.Shared.Model.Course>
+﻿@model NAA.Web.Models.Apply.CourceViewModel
 
-@{
-    ViewBag.Title = "GetCources";
-}
-
-<h2>@ViewBag.University</h2>
+<h2>@Model.University</h2>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayName("Name")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Description)
+            @Html.DisplayName("Description")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.EntryRequirements)
+            @Html.DisplayName("Entry Requirements")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Tarif)
+            @Html.DisplayName("Tarif")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Nss)
+            @Html.DisplayName("Nss")
         </th>
         <th></th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.CourseHolders)
     {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.Name)
+            @Html.DisplayFor(modelItem => item.Course.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Description)
+            @Html.DisplayFor(modelItem => item.Course.Description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.EntryRequirements)
+            @Html.DisplayFor(modelItem => item.Course.EntryRequirements)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Tarif)
+            @Html.DisplayFor(modelItem => item.Course.Tarif)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Nss)
+            @Html.DisplayFor(modelItem => item.Course.Nss)
         </td>
-        @if (!((List<NAA.Shared.Model.Application>)ViewBag.Applications).Any(x => x.CourseId == item.Id))
+        @if (item.CanAddApplications)
         {
             <td>
-                @Html.ActionLink("Apply", "Apply", new {
-                    applicantId = ViewBag.ApplicantId,
-                    university = ViewBag.University,
-                    courseId = item.Id,
-                    courseName = item.Name
-                })
+               @Html.ActionLink("Apply", "Apply", new {
+                   applicantId = Model.ApplicantId,
+                   university = Model.University,
+                   courseId = item.Course.Id,
+                   courseName = item.Course.Name
+               })
             </td>
         } else
         {
-            <td>Allready applied</td>
+            <td>@Html.Raw(item.CanNotAddApplicationsReason)</td>
         }
     </tr>
     }

@@ -18,7 +18,8 @@ namespace NAA.WsAccess.WebDataService
                 Id = x.CourseId,
                 Name = x.CName,
                 Nss = x.CNSS,
-                Tarif = x.CTarif
+                Tarif = x.CTarif,
+                University = "Sheffield Hallam"
             }).ToList();
         }
     }

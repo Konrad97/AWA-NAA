@@ -16,7 +16,8 @@ namespace NAA.WsAccess.WebDataService
                 Id = x.Id,
                 Name = x.Name,
                 Nss = x.NSS.ToString(),
-                Tarif = x.Tarif.ToString()
+                Tarif = x.Tarif.ToString(),
+                University = "Sheffield"
             }).ToList();
         }
     }

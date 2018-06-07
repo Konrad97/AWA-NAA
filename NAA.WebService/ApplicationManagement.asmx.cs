@@ -15,7 +15,7 @@ namespace NAA.Webservice
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class ApplicationManagement : System.Web.Services.WebService
+    public class ApplicationManagement : WebService
     {
 
         private readonly ApplicationService _service = new ApplicationService();

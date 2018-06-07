@@ -23,7 +23,7 @@ namespace NAA.Service
                 throw new InvalidOperationException(reason);
             }
 
-            if (!CanAddApplication(application, out reason))
+            if (!CanAddApplication(application.ApplicantId, application.University, application.CourseId, out reason))
             {
                 throw new InvalidOperationException(reason);
             }
@@ -84,26 +84,19 @@ namespace NAA.Service
             return true;
         }
 
-        public bool CanAddApplication(Application application, out string reason)
+        public bool CanAddApplication(int applicantId, string university, int courseId, out string reason)
         {
             reason = null;
 
-            int applicantId = application.Applicant != null ? application.Applicant.Id : application.ApplicantId;
 
-            if (applicantId == 0)
-            {
-                reason = "Applicant isn't set";
-                return false;
-            }
-
-            var existing = GetApplicationsByUniversity(application.University)
-                .FirstOrDefault(x => x.CourseId == application.CourseId);
+            var existing = GetApplicationsByUniversity(university)
+                .FirstOrDefault(x => x.CourseId == courseId);
    
             if (existing != null)
             {
                 if (existing.OfferState == OfferState.Rejected)
                 {
-                    reason = "You were rejected for this course";
+                    reason = "You were rejected from this course";
                 }
                 else
                 {
