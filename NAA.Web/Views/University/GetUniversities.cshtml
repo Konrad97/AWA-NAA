@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+
+<h2>Universities</h2>
+
+<table class="table">
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item, "GetCources", new { applicantId = ViewBag.ApplicantId, university = item }, null)
+            </td>
+        </tr>
+    }
+
+</table>

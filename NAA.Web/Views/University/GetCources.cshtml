@@ -1,0 +1,58 @@
+﻿@model IEnumerable<NAA.Shared.Model.Course>
+
+@{
+    ViewBag.Title = "GetCources";
+}
+
+<h2>@ViewBag.University</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EntryRequirements)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarif)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nss)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntryRequirements)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarif)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nss)
+            </td>
+            <td>
+                @Html.ActionLink("Apply", "Create", "Application", new {
+                    applicantId = ViewBag.ApplicantId,
+                    university = ViewBag.University,
+                    courseId = item.Id,
+                    courseName = item.Name
+                }, null)
+            </td>
+        </tr>
+    }
+
+</table>

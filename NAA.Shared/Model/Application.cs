@@ -11,7 +11,7 @@
 
         public virtual Applicant Applicant { get; set; }
 
-        public string Uninverity {get; set; }
+        public string University {get; set; }
 
         public int CourseId { get; set; }
 
@@ -19,7 +19,7 @@
 
         public string PersonalStatement { get; set; }
 
-        public OfferState OfferState { get; set; }
+        public OfferState OfferState { get; set; } = OfferState.Pending;
 
         public string TeacherReference { get; set; }
 

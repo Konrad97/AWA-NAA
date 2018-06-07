@@ -3,9 +3,6 @@ using NAA.Shared.Model;
 using NAA.Shared.Service;
 using NAA.Web.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NAA.Web.Controllers
@@ -37,10 +34,14 @@ namespace NAA.Web.Controllers
         }
 
         // GET: Application/Create
-        public ActionResult Create(int applicantId)
+        public ActionResult Create(int applicantId, string university, int courseId, string courseName)
         {
-
-            return View(new Application() { ApplicantId = applicantId });
+            return View(new Application() {
+                ApplicantId = applicantId,
+                University = university,
+                CourseId = courseId,
+                CourseName = courseName
+            });
         }
 
         // POST: Application/Create
@@ -62,20 +63,21 @@ namespace NAA.Web.Controllers
         // GET: Application/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var applcation = _service.GetApplication(id);
+            return View(applcation);
         }
 
         // POST: Application/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, Application application)
         {
             try
             {
-                // TODO: Add update logic here
+                _service.EditApplication(application);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetApplications", new { applicantId = application.ApplicantId });
             }
-            catch
+            catch (Exception e)
             {
                 return View();
             }
@@ -84,18 +86,21 @@ namespace NAA.Web.Controllers
         // GET: Application/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            var applcation = _service.GetApplication(id);
+            return View(applcation);
         }
 
         // POST: Application/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id, Application application)
         {
             try
             {
-                // TODO: Add delete logic here
+                application = _service.GetApplication(id);
 
-                return RedirectToAction("Index");
+                _service.DeleteApplication(application);
+
+                return RedirectToAction("GetApplications", new { applicantId = application.ApplicantId });
             }
             catch
             {

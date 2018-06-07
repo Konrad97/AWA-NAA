@@ -22,7 +22,7 @@ namespace NAA.WsAccess
 
         public List<Course> GetCourses(string university)
         {
-            return _universities[university.ToLower()].GetCourses();
+            return _universities[university].GetCourses();
         }
 
         public List<string> GetUniversities()

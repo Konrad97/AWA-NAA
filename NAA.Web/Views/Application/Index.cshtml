@@ -4,21 +4,21 @@
     ViewBag.Title = "GetApplications";
 }
 
-<h2>GetApplications</h2>
+<h2>Applications</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create", new { applicantId = Model.ApplicantId })
-</p>
 <table class="table">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Applications[0].Confirmed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Applications[0].Uninverity)
+            @Html.DisplayName("State")
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Applications[0].CourseName)
+            @Html.DisplayNameFor(model => model.Applications[0].University)
+        </th>
+        <th>
+            @Html.DisplayName("Course Name")
         </th>
     </tr>
 
@@ -28,17 +28,24 @@
             @Html.DisplayFor(modelItem => item.Confirmed)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Uninverity)
+            @Html.DisplayFor(modelItem => item.OfferState)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.University)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.CourseName)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
         </td>
     </tr>
 }
 
 </table>
+
+<p>
+    @Html.ActionLink("Create New", "GetUniversities", "University", new { applicantId = Model.ApplicantId }, null)
+</p>

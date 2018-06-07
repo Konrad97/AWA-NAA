@@ -35,7 +35,7 @@ namespace NAA.DbAccess
 
         public List<Application> GetApplicationsByUniversity(string university)
         {
-            return _context.Applications.Where(x => x.Uninverity == university).ToList();
+            return _context.Applications.Where(x => x.University == university).ToList();
         }
 
         public List<Application> GetApplications()
