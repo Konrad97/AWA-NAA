@@ -49,7 +49,7 @@
 @if(Model.Applications.Count < 5)
 {
 <p>
-    @Html.ActionLink("Create New", "GetUniversities", "University", new { applicantId = Model.ApplicantId }, null)
+    @Html.ActionLink("Create New", "University", "Apply", new { applicantId = Model.ApplicantId }, null)
 </p>
 } else
 {

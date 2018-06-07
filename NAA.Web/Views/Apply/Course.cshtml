@@ -47,12 +47,12 @@
         @if (!((List<NAA.Shared.Model.Application>)ViewBag.Applications).Any(x => x.CourseId == item.Id))
         {
             <td>
-                @Html.ActionLink("Apply", "Create", "Application", new {
+                @Html.ActionLink("Apply", "Apply", new {
                     applicantId = ViewBag.ApplicantId,
                     university = ViewBag.University,
                     courseId = item.Id,
                     courseName = item.Name
-                }, null)
+                })
             </td>
         } else
         {
