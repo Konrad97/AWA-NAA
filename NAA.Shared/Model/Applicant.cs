@@ -19,7 +19,7 @@ namespace NAA.Shared.Model
 
         public string Email { get; set; }
 
-        public virtual ICollection<Application> Applications { get; set; }
+        public virtual List<Application> Applications { get; set; }
 
     }
 }

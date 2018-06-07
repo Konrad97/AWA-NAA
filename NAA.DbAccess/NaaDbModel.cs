@@ -18,9 +18,11 @@ namespace NAA.DbAccess
         }
 
         public NaaDbModel()
-            : base("name=NaaDbModel")
         {
+            Configuration.ProxyCreationEnabled = false;
+            Database.Connection.ConnectionString = "data source=Julian-Notebook;initial catalog=NAA;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
         }
+        
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

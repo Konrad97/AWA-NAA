@@ -1,30 +1,34 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.Web.Services;
-using System.Web.Services.Protocols;
-using NAA.Service;
+﻿using NAA.Service;
 using NAA.Shared.Model;
 using NAA.Shared.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Services;
+using System.Web.Services.Protocols;
 
-namespace NAA.WebServer
+namespace NAA.Webservice
 {
     /// <summary>
-    ///     With this webservice you can check applications to your university and manage their state.
+    /// Summary description for ApplicationManagement
     /// </summary>
     [WebService(Namespace = "http://tempuri.org/")]
     [WebServiceBinding(ConformsTo = WsiProfiles.BasicProfile1_1)]
-    [ToolboxItem(false)]
-
-    // Wenn der Aufruf dieses Webdiensts aus einem Skript zulässig sein soll, heben Sie mithilfe von ASP.NET AJAX die Kommentarmarkierung für die folgende Zeile auf. 
+    [System.ComponentModel.ToolboxItem(false)]
+    // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class ApplicationWebService : WebService
+    public class ApplicationManagement : System.Web.Services.WebService
     {
+
         private readonly IApplicationService _service = new ApplicationService();
 
         [WebMethod]
         public List<Application> GetApplications(string university)
         {
-            return _service.GetApplicationsByUniversity(university);
+            var data = _service.GetApplicationsByUniversity(university);
+
+            return data;
         }
 
         [WebMethod]
@@ -38,7 +42,7 @@ namespace NAA.WebServer
             if (application.University != university)
                 throw new SoapException("Permission Denied.", SoapException.ClientFaultCode);
 
-            if (application.OfferState != OfferState.Conditional || application.OfferState != OfferState.Pending)
+            if (application.OfferState != OfferState.Conditional && application.OfferState != OfferState.Pending)
                 throw new SoapException("Offerstate can not be modified.", SoapException.ClientFaultCode);
 
             if (application.OfferState == OfferState.Conditional && offerState != OfferState.Unconditional)

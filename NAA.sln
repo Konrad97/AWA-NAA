@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAA.Service", "NAA.Service\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAA.WsAccess", "NAA.WsAccess\NAA.WsAccess.csproj", "{ED76B3E7-BA9C-44A3-8377-9B932EB9F99E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAA.WebService", "NAA.WebServer\NAA.WebService.csproj", "{1CC57AFF-B672-4F49-948C-C0C7D134B4EF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NAA.Webservice", "NAA.Webservice\NAA.Webservice.csproj", "{5CB01921-1199-4C86-B189-1F810C8601C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +41,10 @@ Global
 		{ED76B3E7-BA9C-44A3-8377-9B932EB9F99E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED76B3E7-BA9C-44A3-8377-9B932EB9F99E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ED76B3E7-BA9C-44A3-8377-9B932EB9F99E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1CC57AFF-B672-4F49-948C-C0C7D134B4EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1CC57AFF-B672-4F49-948C-C0C7D134B4EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1CC57AFF-B672-4F49-948C-C0C7D134B4EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1CC57AFF-B672-4F49-948C-C0C7D134B4EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CB01921-1199-4C86-B189-1F810C8601C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CB01921-1199-4C86-B189-1F810C8601C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CB01921-1199-4C86-B189-1F810C8601C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CB01921-1199-4C86-B189-1F810C8601C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
