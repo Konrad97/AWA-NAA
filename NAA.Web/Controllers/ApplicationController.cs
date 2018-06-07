@@ -2,6 +2,7 @@
 using NAA.Shared.Model;
 using NAA.Shared.Service;
 using NAA.Web.Models;
+using NAA.Web.Models.Application;
 using System;
 using System.Web.Mvc;
 
@@ -18,7 +19,7 @@ namespace NAA.Web.Controllers
 
             var applications = _service.GetApplicationsByApplicantId(applicantId);
 
-            var viewModel = new ApplicationViewModel {
+            var viewModel = new ApplicationIndexViewModel {
                 ApplicantId = applicantId,
                 Applications = applications,
                 CanAddApplications = canAdd,

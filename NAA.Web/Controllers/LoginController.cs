@@ -1,6 +1,7 @@
 ﻿using Naa.Shared.Service;
 using NAA.Service;
 using NAA.Web.Models;
+using NAA.Web.Models.Login;
 using System.Web.Mvc;
 
 namespace NAA.Web.Controllers
@@ -17,7 +18,7 @@ namespace NAA.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginFormData formData)
+        public ActionResult Login(LoginViewModel formData)
         {
             var applicant = _service.GetApplicant(formData.Email);
 
@@ -26,7 +27,7 @@ namespace NAA.Web.Controllers
                 return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
             }
 
-            return View("Login", new LoginFormData { InvalidEmail = true });
+            return View("Login", new LoginViewModel { InvalidEmail = true });
         }
 
         public ActionResult Register()

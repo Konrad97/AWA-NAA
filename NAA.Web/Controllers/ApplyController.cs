@@ -2,10 +2,8 @@
 using NAA.Service;
 using NAA.Shared.Model;
 using NAA.Shared.Service;
-using System;
-using System.Collections.Generic;
+using NAA.Web.Models.Apply;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace NAA.Web.Controllers
@@ -13,8 +11,8 @@ namespace NAA.Web.Controllers
     public class ApplyController : Controller
     {
 
-        private readonly ICourseService _courseService = new CourseService();
-        private readonly IApplicationService _applicationService = new ApplicationService();
+        private readonly CourseService _courseService = new CourseService();
+        private readonly ApplicationService _applicationService = new ApplicationService();
 
         public ActionResult University(int applicantId)
         {
@@ -24,14 +22,28 @@ namespace NAA.Web.Controllers
 
         public ActionResult Course(int applicantId, string university)
         {
-            var applications = _applicationService.GetApplicationsByApplicantId(applicantId);
-            applications = applications.Where(x => x.University == university).ToList();
+            var courses = _courseService.GetCourses(university);
 
-            ViewBag.Applications = applications;
-            ViewBag.ApplicantId = applicantId;
-            ViewBag.University = university;
+            CourceViewModel viewModel = new CourceViewModel
+            {
+                ApplicantId = applicantId,
+                University = university,
+                CourseHolders = courses.Select(x => BuildHolder(applicantId, x)).ToList()
+            };
 
-            return View(_courseService.GetCourses(university));
+            return View(viewModel);
+        }
+
+        private CourceViewModelHolder BuildHolder(int applicantId, Course course)
+        {
+            var canAdd = _applicationService.CanAddApplication(applicantId, course.University, course.Id, out string reason);
+
+            return new CourceViewModelHolder
+            {
+                Course = course,
+                CanAddApplications = canAdd,
+                CanNotAddApplicationsReason = reason
+            };
         }
 
         public ActionResult Apply(int applicantId, string university, int courseId, string courseName)

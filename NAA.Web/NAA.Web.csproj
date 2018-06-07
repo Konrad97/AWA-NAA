@@ -200,8 +200,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ApplicationViewModel.cs" />
-    <Compile Include="Models\LoginFormData.cs" />
+    <Compile Include="Models\Application\ApplicationIndexViewModel.cs" />
+    <Compile Include="Models\Apply\CourceViewModel.cs" />
+    <Compile Include="Models\Login\LoginViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

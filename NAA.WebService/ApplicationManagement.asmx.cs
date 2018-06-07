@@ -1,10 +1,7 @@
 ﻿using NAA.Service;
 using NAA.Shared.Model;
 using NAA.Shared.Service;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 
@@ -18,7 +15,7 @@ namespace NAA.Webservice
     [System.ComponentModel.ToolboxItem(false)]
     // To allow this Web Service to be called from script, using ASP.NET AJAX, uncomment the following line. 
     // [System.Web.Script.Services.ScriptService]
-    public class ApplicationManagement : System.Web.Services.WebService
+    public class ApplicationManagement : WebService
     {
 
         private readonly IApplicationService _service = new ApplicationService();
