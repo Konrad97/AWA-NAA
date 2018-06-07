@@ -1,40 +1,45 @@
 ﻿using NAA.Service;
 using NAA.Shared.Model;
+using NAA.Shared.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
 using System.Web.Mvc;
-using Naa.Shared.Service;
 
 namespace NAA.Web.Controllers
 {
-    public class ApplicantController : Controller
+    public class ApplicationController : Controller
     {
 
-        private readonly IApplicantService _dataService = new ApplicantService();
 
-        // GET: Applicant
+        private readonly IApplicationService _service = new ApplicationService();
+
+        // GET: Application
         public ActionResult Index()
         {
-            return View(_dataService.GetApplicants());
+            return View(_service.GetApplications());
         }
 
-        // GET: Applicant/Details/5
+        // GET: Application/Details/5
         public ActionResult Details(int id)
         {
-            return View(_dataService.GetApplicant(id));
+            return View(_service.GetApplication(id));
         }
 
-        // GET: Applicant/Create
+        // GET: Application/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Applicant/Create
+        // POST: Application/Create
         [HttpPost]
-        public ActionResult Create(Applicant applicant)
+        public ActionResult Create(Application application)
         {
             try
             {
-                _dataService.AddApplicant(applicant);
+                _service.AddApplication(application);
 
                 return RedirectToAction("Index");
             }
@@ -44,13 +49,13 @@ namespace NAA.Web.Controllers
             }
         }
 
-        // GET: Applicant/Edit/5
+        // GET: Application/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: Applicant/Edit/5
+        // POST: Application/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -66,13 +71,13 @@ namespace NAA.Web.Controllers
             }
         }
 
-        // GET: Applicant/Delete/5
+        // GET: Application/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: Applicant/Delete/5
+        // POST: Application/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {
