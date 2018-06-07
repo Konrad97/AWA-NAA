@@ -1,17 +1,25 @@
-﻿using System.Linq;
-using NAA.Shared.Interfaces;
-using NAA.Shared.Models;
+﻿using Naa.Shared.Service;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NAA.Shared.Model;
 
 namespace NAA.DbAccess
 {
     public class ApplicantDataService : IApplicantService
     {
+        private readonly NaaDbModel _context = new NaaDbModel();
 
-        private readonly NaaModel _context;
-
-        internal ApplicantDataService(NaaModel context)
+        public List<Applicant> GetApplicants()
         {
-            _context = context;
+            return _context.Applicants.ToList();
+        }
+
+        public Applicant GetApplicant(int id)
+        {
+            return _context.Applicants.Find(id);
         }
 
         public Applicant GetApplicant(string email)

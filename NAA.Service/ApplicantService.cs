@@ -1,31 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Naa.Shared.Service;
 using NAA.DbAccess;
-using NAA.Shared.Interfaces;
-using NAA.Shared.Models;
+using NAA.Shared.Model;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NAA.Service
 {
-    class ApplicantService : IApplicantService
+    public class ApplicantService : IApplicantService
     {
 
-        private readonly IApplicantService _dataService = DataServiceFactory.GetApplicantService();
-
-
-        public Applicant GetApplicant(string email)
-        {
-            return _dataService.GetApplicant(email);
-        }
+        private IApplicantService _service = new ApplicantDataService();
 
         public void AddApplicant(Applicant applicant)
         {
-            _dataService.AddApplicant(applicant);
+            _service.AddApplicant(applicant);
         }
 
         public void EditApplicant(Applicant applicant)
         {
-            _dataService.EditApplicant(applicant);
+            _service.EditApplicant(applicant);
+        }
+
+        public Applicant GetApplicant(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Applicant GetApplicant(string email)
+        {
+            return _service.GetApplicant(email);
+        }
+
+        public List<Applicant> GetApplicants()
+        {
+            return _service.GetApplicants();
         }
     }
 }

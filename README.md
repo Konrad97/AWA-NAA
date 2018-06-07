@@ -1,3 +1,0 @@
-# AWA-NAA
-
-Test

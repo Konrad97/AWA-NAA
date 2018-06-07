@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{87115F64-09A2-4BED-9114-67B080317958}</ProjectGuid>
+    <ProjectGuid>{988816E7-048B-43F1-9746-2A5AA521455C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>NAA.DbAccess</RootNamespace>
@@ -50,10 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicantDataService.cs" />
-    <Compile Include="ApplicationDataService.cs" />
-    <Compile Include="DataServiceFactory.cs" />
-    <Compile Include="Initializer.cs" />
-    <Compile Include="NAAModel.cs" />
+    <Compile Include="NaaDbModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,9 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\NAA.Shared\NAA.Shared.csproj">
-      <Project>{1761f67d-e5e7-4c4b-b443-d0bc1ecd9ebf}</Project>
-      <Name>NAA.Shared</Name>
+    <ProjectReference Include="..\Naa.Shared\Naa.Shared.csproj">
+      <Project>{f37173e7-97b0-4724-a070-185f247454dc}</Project>
+      <Name>Naa.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
