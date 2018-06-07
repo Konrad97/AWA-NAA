@@ -9,5 +9,7 @@ namespace NAA.Web.Models
     {
         public string Email { get; set; }
 
+        public bool InvalidEmail { get; set; }
+
     }
 }
