@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="ApplicantService.cs" />
     <Compile Include="ApplicationService.cs" />
+    <Compile Include="CourceService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -52,6 +53,10 @@
     <ProjectReference Include="..\Naa.Shared\Naa.Shared.csproj">
       <Project>{f37173e7-97b0-4724-a070-185f247454dc}</Project>
       <Name>Naa.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\NAA.WsAccess\NAA.WsAccess.csproj">
+      <Project>{ed76b3e7-ba9c-44a3-8377-9b932eb9f99e}</Project>
+      <Name>NAA.WsAccess</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
