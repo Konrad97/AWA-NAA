@@ -28,7 +28,7 @@ namespace NAA.WebServer
         }
 
         [WebMethod]
-        public Application SetApplicationsStatus(string university, int applicationId, OfferState offerState)
+        public Application SetApplicationsStatus(string university, int applicationId, OfferState offerState, string comment = "")
         {
             var application = _service.GetApplication(applicationId);
 
@@ -46,6 +46,7 @@ namespace NAA.WebServer
                     SoapException.ClientFaultCode);
 
             application.OfferState = offerState;
+            application.Comment = comment;
             _service.EditApplication(application);
 
             return application;
