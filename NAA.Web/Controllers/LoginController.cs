@@ -21,11 +21,16 @@ namespace NAA.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(LoginFormData formData)
+        public ActionResult Index(LoginFormData formData)
         {
-            var applicantId = _service.GetApplicant(formData.Email).Id;
+            var applicant = _service.GetApplicant(formData.Email);
 
-            return RedirectToAction("GetApplications", "Application", new { applicantId });
+            if(applicant != null)
+            {
+                return RedirectToAction("GetApplications", "Application", new { applicantId = applicant.Id });
+            }
+
+            return View("Index", new LoginFormData { InvalidEmail = true });
         }
     }
 }

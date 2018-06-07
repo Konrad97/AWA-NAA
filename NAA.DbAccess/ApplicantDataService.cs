@@ -24,7 +24,7 @@ namespace NAA.DbAccess
 
         public Applicant GetApplicant(string email)
         {
-            return _context.Applicants.Single(x => x.Email == email);
+            return _context.Applicants.SingleOrDefault(x => x.Email == email);
         }
 
         public void AddApplicant(Applicant applicant)
