@@ -36,7 +36,7 @@ namespace NAA.Web.Controllers
             {
                 _dataService.AddApplicant(applicant);
 
-                return RedirectToAction("Index");
+                return RedirectToAction("GetApplications", "Application", new { applicantId = applicant.Id });
             }
             catch
             {

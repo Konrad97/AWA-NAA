@@ -7,6 +7,8 @@
 
         public int Id { get; set; }
 
+        public int ApplicantId { get; set; }
+
         public virtual Applicant Applicant { get; set; }
 
         public string Uninverity {get; set; }

@@ -28,10 +28,9 @@ namespace NAA.DbAccess
             _context.SaveChanges();
         }
 
-        public List<Application> GetApplicationsByApplicantId(int applicatId)
+        public List<Application> GetApplicationsByApplicantId(int applicantId)
         {
-            //return _context.Applications.Where(x => x.Applicant.Id == applicatId).ToList();
-            return new List<Application>();
+            return _context.Applications.Where(x => x.Applicant.Id == applicantId).ToList();
         }
 
         public List<Application> GetApplicationsByUniversity(string university)

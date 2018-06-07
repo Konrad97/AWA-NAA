@@ -1,6 +1,7 @@
 ﻿using NAA.Service;
 using NAA.Shared.Model;
 using NAA.Shared.Service;
+using NAA.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +13,16 @@ namespace NAA.Web.Controllers
     public class ApplicationController : Controller
     {
 
-
         private readonly IApplicationService _service = new ApplicationService();
+
+        public ActionResult GetApplications(int applicantId)
+        {
+            var applications = _service.GetApplicationsByApplicantId(applicantId);
+
+            var viewModel = new ApplicationViewModel { ApplicantId = applicantId, Applications = applications };
+
+            return View("Index", viewModel);
+        }
 
         // GET: Application
         public ActionResult Index()
@@ -28,9 +37,10 @@ namespace NAA.Web.Controllers
         }
 
         // GET: Application/Create
-        public ActionResult Create()
+        public ActionResult Create(int applicantId)
         {
-            return View();
+
+            return View(new Application() { ApplicantId = applicantId });
         }
 
         // POST: Application/Create

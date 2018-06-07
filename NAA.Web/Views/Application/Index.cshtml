@@ -1,36 +1,42 @@
-﻿@model IEnumerable<NAA.Shared.Model.Application>
+﻿@model NAA.Web.Models.ApplicationViewModel
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "GetApplications";
 }
 
-<h2>Index</h2>
+<h2>GetApplications</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "Create", new { applicantId = Model.ApplicantId })
 </p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Uninverity)
+            @Html.DisplayNameFor(model => model.Applications[0].Confirmed)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.CourseId)
+            @Html.DisplayNameFor(model => model.Applications[0].Uninverity)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.PersonalStatement)
+            @Html.DisplayNameFor(model => model.Applications[0].CourseId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TeacherReference)
+            @Html.DisplayNameFor(model => model.Applications[0].PersonalStatement)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.TeacherContact)
+            @Html.DisplayNameFor(model => model.Applications[0].TeacherReference)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Applications[0].TeacherContact)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Applications) {
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Confirmed)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Uninverity)
         </td>

@@ -28,10 +28,11 @@ namespace NAA.DbAccess
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Conformation>().HasKey(x => x.ApplicantId);
             modelBuilder.Entity<Conformation>().HasRequired(x => x.Application).WithOptional(x => x.Conformation);
 
-            //modelBuilder.Entity<Conformation>().HasIndex(x => x.Application).IsUnique();
-            //modelBuilder.Entity<Conformation>().HasIndex(x => x.Applicant).IsUnique();
+            modelBuilder.Entity<Application>().HasRequired(x => x.Applicant).WithMany(x => x.Applications).HasForeignKey(x => x.ApplicantId);
+
         }
     }
 }

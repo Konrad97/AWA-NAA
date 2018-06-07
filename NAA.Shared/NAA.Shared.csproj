@@ -45,7 +45,6 @@
     <Compile Include="Model\Conformation.cs" />
     <Compile Include="Model\Course.cs" />
     <Compile Include="Model\OfferState.cs" />
-    <Compile Include="Model\University.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\IApplicantService.cs" />
     <Compile Include="Service\IApplicationService.cs" />
