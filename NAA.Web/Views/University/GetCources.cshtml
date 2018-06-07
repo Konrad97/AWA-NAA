@@ -28,22 +28,24 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.EntryRequirements)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Tarif)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nss)
-            </td>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EntryRequirements)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tarif)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nss)
+        </td>
+        @if (!((List<NAA.Shared.Model.Application>)ViewBag.Applications).Any(x => x.CourseId == item.Id))
+        {
             <td>
                 @Html.ActionLink("Apply", "Create", "Application", new {
                     applicantId = ViewBag.ApplicantId,
@@ -52,7 +54,11 @@
                     courseName = item.Name
                 }, null)
             </td>
-        </tr>
+        } else
+        {
+            <td>Allready applied</td>
+        }
+    </tr>
     }
 
 </table>

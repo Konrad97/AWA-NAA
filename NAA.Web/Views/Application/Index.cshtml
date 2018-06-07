@@ -46,6 +46,13 @@
 
 </table>
 
+@if(Model.Applications.Count < 5)
+{
 <p>
     @Html.ActionLink("Create New", "GetUniversities", "University", new { applicantId = Model.ApplicantId }, null)
 </p>
+} else
+{
+    <p>Allready applied to 5 courses</p>
+}
+
