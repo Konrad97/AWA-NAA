@@ -3,6 +3,7 @@ using System.Linq;
 using NAA.Shared.Service;
 using NAA.Shared.Model;
 using System;
+using System.Data.Entity;
 
 namespace NAA.DbAccess
 {
@@ -31,22 +32,23 @@ namespace NAA.DbAccess
 
         public List<Application> GetApplicationsByApplicantId(int applicantId)
         {
-            return _context.Applications.Where(x => x.Applicant.Id == applicantId).ToList();
+            var data = _context.Applications.Where(x => x.Applicant.Id == applicantId).Include(x => x.Applicant).ToList();
+            return data;
         }
 
         public List<Application> GetApplicationsByUniversity(string university)
         {
-            return _context.Applications.Where(x => x.University == university).ToList();
+            return _context.Applications.Where(x => x.University == university).Include(x => x.Applicant).ToList();
         }
 
         public List<Application> GetApplications()
         {
-            return _context.Applications.ToList();
+            return _context.Applications.Include(x => x.Applicant).ToList();
         }
 
         public Application GetApplication(int id)
         {
-            return _context.Applications.Find(id);
+            return _context.Applications.Include(x => x.Applicant).SingleOrDefault(x => x.Id == id);
         }
 
     }

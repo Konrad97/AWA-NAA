@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using NAA.Shared.Model;
+using System.Data.Entity;
 
 namespace NAA.DbAccess
 {
@@ -11,12 +12,12 @@ namespace NAA.DbAccess
 
         public List<Applicant> GetApplicants()
         {
-            return _context.Applicants.ToList();
+            return _context.Applicants.Include(x => x.Applications).ToList();
         }
 
         public Applicant GetApplicant(int id)
         {
-            return _context.Applicants.Find(id);
+            return _context.Applicants.Include(x => x.Applications).SingleOrDefault(x => x.Id == id);
         }
 
         public Applicant GetApplicant(string email)
