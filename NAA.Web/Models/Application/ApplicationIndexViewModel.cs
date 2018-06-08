@@ -5,7 +5,7 @@ namespace NAA.Web.Models.Application
     public class ApplicationIndexViewModel
     {
 
-        public List<Shared.Model.Application> Applications { get; set; }
+        public List<ApplicationIndexViewModelHolder> ApplicationHolders { get; set; }
 
         public int ApplicantId { get; set; }
 
@@ -14,4 +14,15 @@ namespace NAA.Web.Models.Application
         public string CanNotAddApplicationsReason { get; set; }
 
     }
+
+    public class ApplicationIndexViewModelHolder
+    {
+        public Shared.Model.Application Application { get; set; }
+
+        public bool CanAcceptApplication { get; set; }
+
+        public bool CanEditApplication { get; set; }
+
+    }
+
 }

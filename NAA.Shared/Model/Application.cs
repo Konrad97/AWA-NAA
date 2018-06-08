@@ -3,8 +3,6 @@
     public class Application
     {
 
-        public bool Confirmed => Conformation != null;
-
         public int Id { get; set; }
 
         public int ApplicantId { get; set; }
@@ -27,7 +25,7 @@
 
         public string TeacherContact { get; set; }
 
-        public virtual Conformation Conformation { get; set; }
+        public  bool Confirmed { get; set; }
 
     }
 }

@@ -12,7 +12,6 @@ namespace NAA.Service
     public class ApplicationService : IApplicationService
     {
         private IApplicationService _applicationService = new ApplicationDataService();
-        private IConformationService _conformationService = new ConformationService();
         private IApplicantService _applicantService = new ApplicantDataService();
 
         public void AddApplication(Application application)
@@ -65,7 +64,9 @@ namespace NAA.Service
         {
             reason = null;
 
-            int count = _applicationService.GetApplicationsByApplicantId(applicantId).Where(x => x.OfferState != OfferState.Rejected).Count();
+            var applications = _applicationService.GetApplicationsByApplicantId(applicantId);
+
+            int count = applications.Where(x => x.OfferState != OfferState.Rejected).Count();
             
             if (count > 4)
             {
@@ -73,7 +74,7 @@ namespace NAA.Service
                 return false;
             }
 
-            bool hasConfirmed = _conformationService.GetConformation(applicantId) != null;
+            bool hasConfirmed = applications.Any(x => x.Confirmed);
 
             if (hasConfirmed)
             {
@@ -84,13 +85,53 @@ namespace NAA.Service
             return true;
         }
 
+        public bool CanEditApplication(int applicationId)
+        {
+            var application = _applicationService.GetApplication(applicationId);
+
+            return application.OfferState == OfferState.Pending;
+        }
+
+        public void ConfirmApplication(int applicationId)
+        {
+            if (!CanAcceptApplication(applicationId))
+            {
+                throw new InvalidOperationException("Application can not be confirmed");
+            }
+
+            var application = _applicationService.GetApplication(applicationId);
+
+            application.Confirmed = true;
+
+            _applicationService.EditApplication(application);
+        }
+
+        public bool CanAcceptApplication(int applicationId)
+        {
+            var application = _applicationService.GetApplication(applicationId);
+
+            if(application.OfferState == OfferState.Conditional || application.OfferState == OfferState.Unconditional)
+            {
+                var applications = _applicationService.GetApplicationsByApplicantId(application.ApplicantId);
+                bool hasConfirmed = applications.Any(x => x.Confirmed);
+
+                if (hasConfirmed)
+                {
+                    return false;
+                }
+
+                return true;
+            }
+
+            return false;
+        }
+
         public bool CanAddApplication(int applicantId, string university, int courseId, out string reason)
         {
             reason = null;
 
-
             var existing = GetApplicationsByUniversity(university)
-                .FirstOrDefault(x => x.CourseId == courseId);
+                .FirstOrDefault(x => x.CourseId == courseId && x.ApplicantId == applicantId);
    
             if (existing != null)
             {

@@ -1,12 +1,9 @@
 ﻿@model NAA.Shared.Model.Application
 
-<h2>Application @Model.University - @Model.CourseName</h2>
-
+<h2>Confirm</h2>
 <div>
-    <h4>Application</h4>
     <hr />
     <dl class="dl-horizontal">
-
         <dt>
             @Html.DisplayNameFor(model => model.Confirmed)
         </dt>
@@ -16,19 +13,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("State")
+            @Html.DisplayNameFor(model => model.ApplicantId)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.OfferState)
-        </dd>
-
-        <dt>
-            @Html.DisplayName("Comment")
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Comment)
+            @Html.DisplayFor(model => model.ApplicantId)
         </dd>
 
         <dt>
@@ -40,7 +29,15 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Course Name")
+            @Html.DisplayNameFor(model => model.CourseId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CourseId)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseName)
         </dt>
 
         <dd>
@@ -48,7 +45,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Personal Statement")
+            @Html.DisplayNameFor(model => model.PersonalStatement)
         </dt>
 
         <dd>
@@ -56,7 +53,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Teacher Reference")
+            @Html.DisplayNameFor(model => model.TeacherReference)
         </dt>
 
         <dd>
@@ -64,7 +61,7 @@
         </dd>
 
         <dt>
-            @Html.DisplayName("Teacher Contact")
+            @Html.DisplayNameFor(model => model.TeacherContact)
         </dt>
 
         <dd>
@@ -72,4 +69,15 @@
         </dd>
 
     </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.HiddenFor(model => model.ApplicantId)
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Confirm" class="btn btn-default" />
+        </div>
+    }
 </div>

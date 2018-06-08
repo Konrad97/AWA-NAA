@@ -4,6 +4,7 @@ using NAA.Shared.Service;
 using NAA.Web.Models;
 using NAA.Web.Models.Application;
 using System;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace NAA.Web.Controllers
@@ -11,17 +12,17 @@ namespace NAA.Web.Controllers
     public class ApplicationController : Controller
     {
 
-        private readonly ApplicationService _service = new ApplicationService();
+        private readonly ApplicationService _applicationService = new ApplicationService();
 
         public ActionResult Index(int applicantId)
         {
-            var canAdd = _service.CanAddApplication(applicantId, out string reson);
+            var canAdd = _applicationService.CanAddApplication(applicantId, out string reson);
 
-            var applications = _service.GetApplicationsByApplicantId(applicantId);
+            var applications = _applicationService.GetApplicationsByApplicantId(applicantId);
 
             var viewModel = new ApplicationIndexViewModel {
                 ApplicantId = applicantId,
-                Applications = applications,
+                ApplicationHolders = applications.Select(BuildHolder).ToList(),
                 CanAddApplications = canAdd,
                 CanNotAddApplicationsReason = reson
             };
@@ -29,14 +30,27 @@ namespace NAA.Web.Controllers
             return View("Index", viewModel);
         }
 
+        private ApplicationIndexViewModelHolder BuildHolder(Application application)
+        {
+            var canAccept = _applicationService.CanAcceptApplication(application.Id);
+            var canEdit = _applicationService.CanEditApplication(application.Id);
+
+            return new ApplicationIndexViewModelHolder
+            {
+                CanAcceptApplication = canAccept,
+                Application = application,
+                CanEditApplication = canEdit
+            };
+        }
+
         public ActionResult Details(int id)
         {
-            return View(_service.GetApplication(id));
+            return View(_applicationService.GetApplication(id));
         }
 
         public ActionResult Edit(int id)
         {
-            var applcation = _service.GetApplication(id);
+            var applcation = _applicationService.GetApplication(id);
             return View(applcation);
         }
 
@@ -45,7 +59,7 @@ namespace NAA.Web.Controllers
         {
             try
             {
-                _service.EditApplication(application);
+                _applicationService.EditApplication(application);
 
                 return RedirectToAction("Index", new { applicantId = application.ApplicantId });
             }
@@ -57,7 +71,7 @@ namespace NAA.Web.Controllers
 
         public ActionResult Delete(int id)
         {
-            var applcation = _service.GetApplication(id);
+            var applcation = _applicationService.GetApplication(id);
             return View(applcation);
         }
 
@@ -66,9 +80,9 @@ namespace NAA.Web.Controllers
         {
             try
             {
-                application = _service.GetApplication(id);
+                application = _applicationService.GetApplication(id);
 
-                _service.DeleteApplication(application);
+                _applicationService.DeleteApplication(application);
 
                 return RedirectToAction("Index", new { applicantId = application.ApplicantId });
             }
@@ -77,5 +91,19 @@ namespace NAA.Web.Controllers
                 return View();
             }
         }
+
+        public ActionResult Confirm(int id)
+        {
+            return View(_applicationService.GetApplication(id));
+        }
+
+        [HttpPost]
+        public ActionResult Confirm(int id, Application application)
+        {
+            _applicationService.ConfirmApplication(application.Id);
+
+            return RedirectToAction("Index", new { applicantId = application.ApplicantId });
+        }
+
     }
 }
