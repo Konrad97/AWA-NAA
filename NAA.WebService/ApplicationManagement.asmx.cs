@@ -18,12 +18,13 @@ namespace NAA.Webservice
     public class ApplicationManagement : WebService
     {
 
-        private readonly ApplicationService _service = new ApplicationService();
+        private readonly ApplicationService _applicationService = new ApplicationService();
+        private readonly ApplicantService _applicantService = new ApplicantService();
 
         [WebMethod]
         public List<Application> GetApplications(string university)
         {
-            var data = _service.GetApplicationsByUniversity(university);
+            var data = _applicationService.GetApplicationsByUniversity(university);
 
             return data;
         }
@@ -32,18 +33,33 @@ namespace NAA.Webservice
         public Application SetApplicationsStatus(string university, int applicationId, OfferState offerState, string comment = "")
         {
 
-            var application = _service.GetApplication(applicationId);
+            var application = _applicationService.GetApplication(applicationId);
 
-            if (!_service.CanEditApplication(university, application, offerState, out string reason))
+            if (!_applicationService.CanEditApplication(university, application, offerState, out string reason))
             {
                 throw new SoapException(reason, SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
             }
 
             application.OfferState = offerState;
             application.Comment = comment;
-            _service.EditApplication(application);
+            _applicationService.EditApplication(application);
 
             return application;
         }
+
+        [WebMethod]
+        public Applicant GetApplicant(string university, int applicantId)
+        {
+            var application = _applicationService.GeFirmApplication(applicantId);
+            var applicant = _applicantService.GetApplicant(application.ApplicantId);
+
+            if (application != null && application.University == university)
+            {
+                return applicant;
+            }
+
+            throw new SoapException("Applicant has not confiremd an application for your university", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
+        }
+
     }
 }

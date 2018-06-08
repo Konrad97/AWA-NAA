@@ -18,6 +18,7 @@ namespace NAA.DbAccess
         public NaaDbModel()
         {
             Configuration.ProxyCreationEnabled = false;
+            Configuration.LazyLoadingEnabled = false;
             Database.Connection.ConnectionString = "data source=Julian-Notebook;initial catalog=NAA2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
         }
         

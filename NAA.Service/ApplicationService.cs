@@ -55,6 +55,11 @@ namespace NAA.Service
             return _applicationService.GetApplications();
         }
 
+        public Application GeFirmApplication(int applicantId)
+        {
+            return _applicationService.GetApplicationsByApplicantId(applicantId).FirstOrDefault(x => x.Confirmed);
+        }
+
         public Application GetApplication(int id)
         {
             return _applicationService.GetApplication(id);
