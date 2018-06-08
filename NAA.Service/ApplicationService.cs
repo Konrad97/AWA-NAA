@@ -1,18 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using NAA.DbAccess;
 using NAA.Shared.Service;
 using NAA.Shared.Model;
 using System.Linq;
-using Naa.Shared.Service;
 
 namespace NAA.Service
 {
     public class ApplicationService : IApplicationService
     {
         private IApplicationService _applicationService = new ApplicationDataService();
-        private IApplicantService _applicantService = new ApplicantDataService();
 
         public void AddApplication(Application application)
         {

@@ -19,7 +19,7 @@ namespace NAA.DbAccess
         {
             Configuration.ProxyCreationEnabled = false;
             Configuration.LazyLoadingEnabled = false;
-            Database.Connection.ConnectionString = "data source=Julian-Notebook;initial catalog=NAA2;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
+            Database.Connection.ConnectionString = "data source=Julian-Notebook;initial catalog=NAA5;integrated security=True;MultipleActiveResultSets=True;App=EntityFramework";
         }
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

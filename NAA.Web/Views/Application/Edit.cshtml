@@ -21,16 +21,14 @@
     <div class="form-group">
         @Html.Label("Personal Statement", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.PersonalStatement, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.PersonalStatement, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.PersonalStatement, new { htmlAttributes = new { @class = "form-control", required = "required" } })
         </div>
     </div>
 
     <div class="form-group">
         @Html.Label("Teacher Contact", htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.TeacherContact, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.TeacherContact, "", new { @class = "text-danger" })
+            @Html.EditorFor(model => model.TeacherContact, new { htmlAttributes = new { @class = "form-control", required = "required" } })
         </div>
     </div>
 

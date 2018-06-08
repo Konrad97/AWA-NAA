@@ -51,11 +51,13 @@ namespace NAA.Webservice
         public Applicant GetApplicant(string university, int applicantId)
         {
             var application = _applicationService.GeFirmApplication(applicantId);
-            var applicant = _applicantService.GetApplicant(application.ApplicantId);
 
             if (application != null && application.University == university)
             {
-                return applicant;
+                //break cycling reference
+                application.Applicant.Applications = null;
+
+                return application.Applicant;
             }
 
             throw new SoapException("Applicant has not confiremd an application for your university", SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
