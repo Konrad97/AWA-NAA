@@ -74,6 +74,10 @@
     </dl>
 
     <div>
+        @Html.ActionLink("Generate pdf", "GeneratePdf", new { id = Model.Id })
+    </div>
+
+    <div>
         @Html.ActionLink("Back", "Index", new { applicantId = Model.ApplicantId })
     </div>
 

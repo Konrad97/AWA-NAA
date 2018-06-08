@@ -11,8 +11,10 @@ namespace NAA.Web.Controllers
 {
     public class ApplicationController : Controller
     {
+        private readonly PdfGenerator _pdfGenerator = new PdfGenerator();
 
         private readonly ApplicationService _applicationService = new ApplicationService();
+        private readonly ApplicantService _applicantService = new ApplicantService();
 
         public ActionResult Index(int applicantId)
         {
@@ -46,6 +48,18 @@ namespace NAA.Web.Controllers
         public ActionResult Details(int id)
         {
             return View(_applicationService.GetApplication(id));
+        }
+
+        public ActionResult GeneratePdf(int id)
+        {
+            var application = _applicationService.GetApplication(id);
+            var applicant = _applicantService.GetApplicant(application.ApplicantId);
+
+            application.Applicant = applicant;
+
+            var pdf = _pdfGenerator.GeneratePdf(application, out string title);
+
+            return File(pdf, "application/pdf", title);
         }
 
         public ActionResult Edit(int id)

@@ -65,10 +65,8 @@ namespace NAA.Service
             reason = null;
 
             var applications = _applicationService.GetApplicationsByApplicantId(applicantId);
-
-            int count = applications.Where(x => x.OfferState != OfferState.Rejected).Count();
             
-            if (count > 4)
+            if (applications.Count > 4)
             {
                 reason = "Applicant can only have up to 5 applications";
                 return false;
