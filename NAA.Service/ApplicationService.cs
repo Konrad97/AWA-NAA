@@ -78,7 +78,7 @@ namespace NAA.Service
 
             if (hasConfirmed)
             {
-                reason = "Applicant allready confirmed a application";
+                reason = "Applicant allready confirmed an application";
                 return false;
             }
 

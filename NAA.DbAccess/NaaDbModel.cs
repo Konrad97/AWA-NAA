@@ -25,6 +25,8 @@ namespace NAA.DbAccess
         {
             modelBuilder.Entity<Application>().HasRequired(x => x.Applicant).WithMany(x => x.Applications).HasForeignKey(x => x.ApplicantId);
 
+            modelBuilder.Entity<Applicant>().HasIndex(x => x.Email).IsUnique();
+            modelBuilder.Entity<Applicant>().Property(x => x.Email).HasMaxLength(30);
         }
     }
 }

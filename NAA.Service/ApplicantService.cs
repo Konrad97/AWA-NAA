@@ -11,8 +11,34 @@ namespace NAA.Service
 
         private IApplicantService _service = new ApplicantDataService();
 
+        public bool CannAddApplicant(Applicant applicant, out string reason)
+        {
+            reason = null;
+
+            if(String.IsNullOrEmpty(applicant.Email))
+            {
+                reason = "Email is required";
+                return false;
+            }
+
+            var existing = _service.GetApplicant(applicant.Email);
+
+            if(existing != null)
+            {
+                reason = "Email is already in use";
+                return false;
+            }
+
+            return true;
+        }
+
         public void AddApplicant(Applicant applicant)
         {
+            if (!CannAddApplicant(applicant, out string reason))
+            {
+                throw new InvalidOperationException(reason);
+            }
+
             _service.AddApplicant(applicant);
         }
 

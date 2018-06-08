@@ -9,9 +9,8 @@ namespace NAA.Web.Controllers
     public class LoginController : Controller
     {
 
-        private IApplicantService _service = new ApplicantService();
+        private ApplicantService _service = new ApplicantService();
 
-        // GET: Login
         public ActionResult Login()
         {
             return View();
@@ -38,16 +37,23 @@ namespace NAA.Web.Controllers
         [HttpPost]
         public ActionResult Register(Shared.Model.Applicant applicant)
         {
-            try
-            {
-                _service.AddApplicant(applicant);
+            var cannAdd = _service.CannAddApplicant(applicant, out string reason);
 
-                return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
-            }
-            catch
+            if(!cannAdd)
             {
-                return View();
+                var viewModel = new RegisterViewModel
+                {
+                    Applicant = applicant,
+                    CannNotRegitserReason = reason,
+                    CannRegisert = cannAdd
+                };
+
+                return View(viewModel);
             }
+
+            _service.AddApplicant(applicant);
+
+            return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
         }
 
     }
