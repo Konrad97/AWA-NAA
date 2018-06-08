@@ -5,43 +5,42 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
-    <hr />
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    @Html.HiddenFor(model => model.Id)
-    @Html.HiddenFor(model => model.ApplicantId)
-    @Html.HiddenFor(model => model.CourseId)
-    @Html.HiddenFor(model => model.CourseName)
-    @Html.HiddenFor(model => model.OfferState)
-    @Html.HiddenFor(model => model.TeacherReference)
-    @Html.HiddenFor(model => model.University)
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-    <div class="form-group">
-        @Html.Label("Personal Statement", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.PersonalStatement, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.ApplicantId)
+        @Html.HiddenFor(model => model.CourseId)
+        @Html.HiddenFor(model => model.CourseName)
+        @Html.HiddenFor(model => model.OfferState)
+        @Html.HiddenFor(model => model.TeacherReference)
+        @Html.HiddenFor(model => model.University)
+
+        <div class="form-group">
+            @Html.Label("Personal Statement", new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PersonalStatement, new {htmlAttributes = new {@class = "form-control", required = "required"}})
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        @Html.Label("Teacher Contact", htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.TeacherContact, new { htmlAttributes = new { @class = "form-control", required = "required" } })
+        <div class="form-group">
+            @Html.Label("Teacher Contact", new {@class = "control-label col-md-2"})
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.TeacherContact, new {htmlAttributes = new {@class = "form-control", required = "required"}})
+            </div>
         </div>
-    </div>
 
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default"/>
+            </div>
         </div>
-    </div>
 
-    <div>
-        @Html.ActionLink("Back", "Index", new { applicantId = Model.ApplicantId })
-    </div>
+        <div>
+            @Html.ActionLink("Back", "Index", new {applicantId = Model.ApplicantId})
+        </div>
 
-</div>
+    </div>
 }
-

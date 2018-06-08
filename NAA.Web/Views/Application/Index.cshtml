@@ -36,18 +36,18 @@
                     @Html.DisplayFor(modelItem => item.Application.CourseName)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.Application.Id })
+                    @Html.ActionLink("Details", "Details", new {id = item.Application.Id})
                     @if (item.CanEditApplication)
                     {
                         @Html.Raw(" | ")
-                        @Html.ActionLink("Edit", "Edit", new { id = item.Application.Id })
+                        @Html.ActionLink("Edit", "Edit", new {id = item.Application.Id})
                         @Html.Raw(" | ")
-                        @Html.ActionLink("Delete", "Delete", new { id = item.Application.Id })
+                        @Html.ActionLink("Delete", "Delete", new {id = item.Application.Id})
                     }
                     @if (item.CanAcceptApplication)
                     {
                         @Html.Raw(" | ")
-                        @Html.ActionLink("Confirm", "Confirm", new { id = item.Application.Id })
+                        @Html.ActionLink("Confirm", "Confirm", new {id = item.Application.Id})
                     }
                 </td>
             </tr>
@@ -61,10 +61,10 @@ else
 }
 
 <p>
-    @Html.ActionLink("Edit Profile", "Edit", "Applicant", new { id = Model.ApplicantId }, null) |
+    @Html.ActionLink("Edit Profile", "Edit", "Applicant", new {id = Model.ApplicantId}, null) |
     @if (Model.CanAddApplications)
     {
-        @Html.ActionLink("Create New Application", "University", "Apply", new { applicantId = Model.ApplicantId }, null)
+        @Html.ActionLink("Create New Application", "University", "Apply", new {applicantId = Model.ApplicantId}, null)
     }
     else
     {

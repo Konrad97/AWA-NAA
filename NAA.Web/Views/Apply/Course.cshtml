@@ -43,7 +43,8 @@
             @if (item.CanAddApplications)
             {
                 <td>
-                    @Html.ActionLink("Apply", "Apply", new {
+                    @Html.ActionLink("Apply", "Apply", new
+                    {
                         applicantId = Model.ApplicantId,
                         university = Model.University,
                         courseId = item.Course.Id,
@@ -61,5 +62,5 @@
 </table>
 
 <div>
-    @Html.ActionLink("Back", "University", new { applicantId = Model.ApplicantId })
+    @Html.ActionLink("Back", "University", new {applicantId = Model.ApplicantId})
 </div>

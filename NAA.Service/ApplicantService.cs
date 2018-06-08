@@ -1,43 +1,18 @@
-﻿using Naa.Shared.Service;
+﻿using System;
+using System.Collections.Generic;
+using Naa.Shared.Service;
 using NAA.DbAccess;
 using NAA.Shared.Model;
-using System;
-using System.Collections.Generic;
 
 namespace NAA.Service
 {
     public class ApplicantService : IApplicantService
     {
-
-        private IApplicantService _service = new ApplicantDataService();
-
-        public bool CannAddApplicant(Applicant applicant, out string reason)
-        {
-            reason = null;
-
-            if(String.IsNullOrEmpty(applicant.Email))
-            {
-                reason = "Email is required";
-                return false;
-            }
-
-            var existing = _service.GetApplicant(applicant.Email);
-
-            if(existing != null)
-            {
-                reason = "Email is already in use";
-                return false;
-            }
-
-            return true;
-        }
+        private readonly IApplicantService _service = new ApplicantDataService();
 
         public void AddApplicant(Applicant applicant)
         {
-            if (!CannAddApplicant(applicant, out string reason))
-            {
-                throw new InvalidOperationException(reason);
-            }
+            if (!CannAddApplicant(applicant, out var reason)) throw new InvalidOperationException(reason);
 
             _service.AddApplicant(applicant);
         }
@@ -60,6 +35,27 @@ namespace NAA.Service
         public List<Applicant> GetApplicants()
         {
             return _service.GetApplicants();
+        }
+
+        public bool CannAddApplicant(Applicant applicant, out string reason)
+        {
+            reason = null;
+
+            if (string.IsNullOrEmpty(applicant.Email))
+            {
+                reason = "Email is required";
+                return false;
+            }
+
+            var existing = _service.GetApplicant(applicant.Email);
+
+            if (existing != null)
+            {
+                reason = "Email is already in use";
+                return false;
+            }
+
+            return true;
         }
     }
 }

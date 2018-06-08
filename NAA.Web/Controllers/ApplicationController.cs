@@ -1,27 +1,25 @@
-﻿using NAA.Service;
-using NAA.Shared.Model;
-using NAA.Shared.Service;
-using NAA.Web.Models;
-using NAA.Web.Models.Application;
-using System;
+﻿using System;
 using System.Linq;
 using System.Web.Mvc;
+using NAA.Service;
+using NAA.Shared.Model;
+using NAA.Web.Models.Application;
 
 namespace NAA.Web.Controllers
 {
     public class ApplicationController : Controller
     {
-        private readonly PdfGenerator _pdfGenerator = new PdfGenerator();
-
         private readonly ApplicationService _applicationService = new ApplicationService();
+        private readonly PdfGenerator _pdfGenerator = new PdfGenerator();
 
         public ActionResult Index(int applicantId)
         {
-            var canAdd = _applicationService.CanAddApplication(applicantId, out string reson);
+            var canAdd = _applicationService.CanAddApplication(applicantId, out var reson);
 
             var applications = _applicationService.GetApplicationsByApplicantId(applicantId);
 
-            var viewModel = new ApplicationIndexViewModel {
+            var viewModel = new ApplicationIndexViewModel
+            {
                 ApplicantId = applicantId,
                 ApplicationHolders = applications.Select(BuildHolder).ToList(),
                 CanAddApplications = canAdd,
@@ -53,7 +51,7 @@ namespace NAA.Web.Controllers
         {
             var application = _applicationService.GetApplication(id);
 
-            var pdf = _pdfGenerator.GeneratePdf(application, out string title);
+            var pdf = _pdfGenerator.GeneratePdf(application, out var title);
 
             return File(pdf, "application/pdf", title);
         }
@@ -67,16 +65,10 @@ namespace NAA.Web.Controllers
         [HttpPost]
         public ActionResult Edit(int id, Application application)
         {
-            try
-            {
-                _applicationService.EditApplication(application);
+            _applicationService.EditApplication(application);
 
-                return RedirectToAction("Index", new { applicantId = application.ApplicantId });
-            }
-            catch (Exception e)
-            {
-                return View();
-            }
+            return RedirectToAction("Index", new {applicantId = application.ApplicantId});
+
         }
 
         public ActionResult Delete(int id)
@@ -94,7 +86,7 @@ namespace NAA.Web.Controllers
 
                 _applicationService.DeleteApplication(application);
 
-                return RedirectToAction("Index", new { applicantId = application.ApplicantId });
+                return RedirectToAction("Index", new {applicantId = application.ApplicantId});
             }
             catch
             {
@@ -112,8 +104,7 @@ namespace NAA.Web.Controllers
         {
             _applicationService.ConfirmApplication(application.Id);
 
-            return RedirectToAction("Index", new { applicantId = application.ApplicantId });
+            return RedirectToAction("Index", new {applicantId = application.ApplicantId});
         }
-
     }
 }

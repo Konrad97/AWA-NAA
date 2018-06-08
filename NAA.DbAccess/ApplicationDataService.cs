@@ -1,9 +1,8 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
-using NAA.Shared.Service;
-using NAA.Shared.Model;
-using System;
 using System.Data.Entity;
+using System.Linq;
+using NAA.Shared.Model;
+using NAA.Shared.Service;
 
 namespace NAA.DbAccess
 {
@@ -32,7 +31,8 @@ namespace NAA.DbAccess
 
         public List<Application> GetApplicationsByApplicantId(int applicantId)
         {
-            var data = _context.Applications.Where(x => x.Applicant.Id == applicantId).Include(x => x.Applicant).ToList();
+            var data = _context.Applications.Where(x => x.Applicant.Id == applicantId).Include(x => x.Applicant)
+                .ToList();
             return data;
         }
 
@@ -50,6 +50,5 @@ namespace NAA.DbAccess
         {
             return _context.Applications.Include(x => x.Applicant).SingleOrDefault(x => x.Id == id);
         }
-
     }
 }

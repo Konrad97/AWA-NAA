@@ -4,7 +4,6 @@ namespace NAA.Web.Models.Application
 {
     public class ApplicationIndexViewModel
     {
-
         public List<ApplicationIndexViewModelHolder> ApplicationHolders { get; set; }
 
         public int ApplicantId { get; set; }
@@ -12,7 +11,6 @@ namespace NAA.Web.Models.Application
         public bool CanAddApplications { get; set; }
 
         public string CanNotAddApplicationsReason { get; set; }
-
     }
 
     public class ApplicationIndexViewModelHolder
@@ -22,7 +20,5 @@ namespace NAA.Web.Models.Application
         public bool CanAcceptApplication { get; set; }
 
         public bool CanEditApplication { get; set; }
-
     }
-
 }

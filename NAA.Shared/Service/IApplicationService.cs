@@ -5,7 +5,6 @@ namespace NAA.Shared.Service
 {
     public interface IApplicationService
     {
-
         void AddApplication(Application application);
 
         void EditApplication(Application application);
@@ -19,6 +18,5 @@ namespace NAA.Shared.Service
         Application GetApplication(int id);
 
         List<Application> GetApplicationsByUniversity(string university);
-
     }
 }

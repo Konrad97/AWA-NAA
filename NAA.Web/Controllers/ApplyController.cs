@@ -1,16 +1,16 @@
-﻿using NAA.Service;
+﻿using System.Linq;
+using System.Web.Mvc;
+using NAA.Service;
 using NAA.Shared.Model;
 using NAA.Web.Models.Apply;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace NAA.Web.Controllers
 {
     public class ApplyController : Controller
     {
+        private readonly ApplicationService _applicationService = new ApplicationService();
 
         private readonly CourseService _courseService = new CourseService();
-        private readonly ApplicationService _applicationService = new ApplicationService();
 
         public ActionResult University(int applicantId)
         {
@@ -27,7 +27,7 @@ namespace NAA.Web.Controllers
         {
             var courses = _courseService.GetCourses(university);
 
-            CourceViewModel viewModel = new CourceViewModel
+            var viewModel = new CourceViewModel
             {
                 ApplicantId = applicantId,
                 University = university,
@@ -39,7 +39,8 @@ namespace NAA.Web.Controllers
 
         private CourceViewModelHolder BuildHolder(int applicantId, Course course)
         {
-            var canAdd = _applicationService.CanAddApplication(applicantId, course.University, course.Id, out string reason);
+            var canAdd =
+                _applicationService.CanAddApplication(applicantId, course.University, course.Id, out var reason);
 
             return new CourceViewModelHolder
             {
@@ -65,8 +66,7 @@ namespace NAA.Web.Controllers
         {
             _applicationService.AddApplication(application);
 
-            return RedirectToAction("Index", "Application", new { applicantId = application.ApplicantId });
+            return RedirectToAction("Index", "Application", new {applicantId = application.ApplicantId});
         }
-
     }
 }

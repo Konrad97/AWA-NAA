@@ -1,10 +1,12 @@
 ﻿using Microsoft.Owin;
+using NAA.Web;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(NAA.Web.Startup))]
+[assembly: OwinStartup(typeof(Startup))]
+
 namespace NAA.Web
 {
-    public partial class Startup
+    public class Startup
     {
         public void Configuration(IAppBuilder app)
         {

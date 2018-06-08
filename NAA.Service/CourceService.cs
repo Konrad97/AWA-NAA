@@ -7,8 +7,7 @@ namespace NAA.Service
 {
     public class CourseService : ICourseService
     {
-
-        private ICourseService _service = new CourseDataService();
+        private readonly ICourseService _service = new CourseDataService();
 
         public List<Course> GetCourses(string university)
         {

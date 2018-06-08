@@ -1,15 +1,13 @@
-﻿using Naa.Shared.Service;
+﻿using System.Web.Mvc;
 using NAA.Service;
-using NAA.Web.Models;
+using NAA.Shared.Model;
 using NAA.Web.Models.Login;
-using System.Web.Mvc;
 
 namespace NAA.Web.Controllers
 {
     public class LoginController : Controller
     {
-
-        private ApplicantService _service = new ApplicantService();
+        private readonly ApplicantService _service = new ApplicantService();
 
         public ActionResult Login()
         {
@@ -21,12 +19,9 @@ namespace NAA.Web.Controllers
         {
             var applicant = _service.GetApplicant(formData.Email);
 
-            if(applicant != null)
-            {
-                return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
-            }
+            if (applicant != null) return RedirectToAction("Index", "Application", new {applicantId = applicant.Id});
 
-            return View("Login", new LoginViewModel { InvalidEmail = true });
+            return View("Login", new LoginViewModel {InvalidEmail = true});
         }
 
         public ActionResult Register()
@@ -35,17 +30,17 @@ namespace NAA.Web.Controllers
         }
 
         [HttpPost]
-        public ActionResult Register(Shared.Model.Applicant applicant)
+        public ActionResult Register(Applicant applicant)
         {
-            var cannAdd = _service.CannAddApplicant(applicant, out string reason);
+            var cannAdd = _service.CannAddApplicant(applicant, out var reason);
 
-            if(!cannAdd)
+            if (!cannAdd)
             {
                 var viewModel = new RegisterViewModel
                 {
                     Applicant = applicant,
                     CannNotRegitserReason = reason,
-                    CannRegisert = cannAdd
+                    CannRegisert = false
                 };
 
                 return View(viewModel);
@@ -53,8 +48,7 @@ namespace NAA.Web.Controllers
 
             _service.AddApplicant(applicant);
 
-            return RedirectToAction("Index", "Application", new { applicantId = applicant.Id });
+            return RedirectToAction("Index", "Application", new {applicantId = applicant.Id});
         }
-
     }
 }

@@ -1,28 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
-using NAA.DbAccess;
-using NAA.Shared.Service;
-using NAA.Shared.Model;
 using System.Linq;
+using NAA.DbAccess;
+using NAA.Shared.Model;
+using NAA.Shared.Service;
 
 namespace NAA.Service
 {
     public class ApplicationService : IApplicationService
     {
-        private IApplicationService _applicationService = new ApplicationDataService();
+        private readonly IApplicationService _applicationService = new ApplicationDataService();
 
         public void AddApplication(Application application)
         {
-
-            if(!CanAddApplication(application.ApplicantId, out string reason))
-            {
+            if (!CanAddApplication(application.ApplicantId, out var reason))
                 throw new InvalidOperationException(reason);
-            }
 
             if (!CanAddApplication(application.ApplicantId, application.University, application.CourseId, out reason))
-            {
                 throw new InvalidOperationException(reason);
-            }
 
             _applicationService.AddApplication(application);
         }
@@ -52,14 +47,14 @@ namespace NAA.Service
             return _applicationService.GetApplications();
         }
 
-        public Application GeFirmApplication(int applicantId)
-        {
-            return _applicationService.GetApplicationsByApplicantId(applicantId).FirstOrDefault(x => x.Confirmed);
-        }
-
         public Application GetApplication(int id)
         {
             return _applicationService.GetApplication(id);
+        }
+
+        public Application GeFirmApplication(int applicantId)
+        {
+            return _applicationService.GetApplicationsByApplicantId(applicantId).FirstOrDefault(x => x.Confirmed);
         }
 
         public bool CanAddApplication(int applicantId, out string reason)
@@ -67,14 +62,14 @@ namespace NAA.Service
             reason = null;
 
             var applications = _applicationService.GetApplicationsByApplicantId(applicantId);
-            
+
             if (applications.Count > 4)
             {
                 reason = "Applicant can only have up to 5 applications";
                 return false;
             }
 
-            bool hasConfirmed = applications.Any(x => x.Confirmed);
+            var hasConfirmed = applications.Any(x => x.Confirmed);
 
             if (hasConfirmed)
             {
@@ -95,9 +90,7 @@ namespace NAA.Service
         public void ConfirmApplication(int applicationId)
         {
             if (!CanAcceptApplication(applicationId))
-            {
                 throw new InvalidOperationException("Application can not be confirmed");
-            }
 
             var application = _applicationService.GetApplication(applicationId);
 
@@ -110,17 +103,12 @@ namespace NAA.Service
         {
             var application = _applicationService.GetApplication(applicationId);
 
-            if(application.OfferState == OfferState.Conditional || application.OfferState == OfferState.Unconditional)
+            if (application.OfferState == OfferState.Conditional || application.OfferState == OfferState.Unconditional)
             {
                 var applications = _applicationService.GetApplicationsByApplicantId(application.ApplicantId);
-                bool hasConfirmed = applications.Any(x => x.Confirmed);
+                var hasConfirmed = applications.Any(x => x.Confirmed);
 
-                if (hasConfirmed)
-                {
-                    return false;
-                }
-
-                return true;
+                return !hasConfirmed;
             }
 
             return false;
@@ -132,17 +120,13 @@ namespace NAA.Service
 
             var existing = GetApplicationsByUniversity(university)
                 .FirstOrDefault(x => x.CourseId == courseId && x.ApplicantId == applicantId);
-   
+
             if (existing != null)
             {
                 if (existing.OfferState == OfferState.Rejected)
-                {
                     reason = "You were rejected from this course";
-                }
                 else
-                {
                     reason = "You already applied for this course";
-                }
 
                 return false;
             }
@@ -150,7 +134,8 @@ namespace NAA.Service
             return true;
         }
 
-        public bool CanEditApplication(string university, Application application, OfferState offerState, out string reason)
+        public bool CanEditApplication(string university, Application application, OfferState offerState,
+            out string reason)
         {
             reason = null;
 

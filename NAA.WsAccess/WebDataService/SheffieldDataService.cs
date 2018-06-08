@@ -1,15 +1,17 @@
-﻿using NAA.WsAccess.uk.ac.shu.hallam.webteach_net;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
+using NAA.WsAccess.uk.ac.shu.hallam.webteach_net;
+using Course = NAA.Shared.Model.Course;
 
 namespace NAA.WsAccess.WebDataService
 {
-    class SheffieldDataService : IDataService
+    internal class SheffieldDataService : IDataService
     {
-        readonly SheffieldWebService _ws = new SheffieldWebService();
-        public List<Shared.Model.Course> GetCourses()
+        private readonly SheffieldWebService _ws = new SheffieldWebService();
+
+        public List<Course> GetCourses()
         {
-            return _ws.SheffCourses().Select(x => new Shared.Model.Course()
+            return _ws.SheffCourses().Select(x => new Course
             {
                 Description = x.Description,
                 EntryRequirements = x.EntryReq,

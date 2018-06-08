@@ -2,14 +2,13 @@
 {
     public class Application
     {
-
         public int Id { get; set; }
 
         public int ApplicantId { get; set; }
 
         public virtual Applicant Applicant { get; set; }
 
-        public string University {get; set; }
+        public string University { get; set; }
 
         public int CourseId { get; set; }
 
@@ -25,7 +24,6 @@
 
         public string TeacherContact { get; set; }
 
-        public  bool Confirmed { get; set; }
-
+        public bool Confirmed { get; set; }
     }
 }

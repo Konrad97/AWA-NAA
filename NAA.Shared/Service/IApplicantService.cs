@@ -1,15 +1,10 @@
-﻿using NAA.Shared.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using NAA.Shared.Model;
 
 namespace Naa.Shared.Service
 {
     public interface IApplicantService
     {
-
         List<Applicant> GetApplicants();
 
         Applicant GetApplicant(int id);
@@ -19,6 +14,5 @@ namespace Naa.Shared.Service
         void AddApplicant(Applicant applicant);
 
         void EditApplicant(Applicant applicant);
-
     }
 }

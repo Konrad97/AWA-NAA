@@ -4,7 +4,6 @@ namespace NAA.Shared.Model
 {
     public class Applicant
     {
-
         public int Id { get; set; }
 
         public string Name { get; set; }
@@ -16,6 +15,5 @@ namespace NAA.Shared.Model
         public string Email { get; set; }
 
         public virtual List<Application> Applications { get; set; }
-
     }
 }
