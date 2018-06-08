@@ -35,6 +35,10 @@
     </div>
 }
 
+    <div>
+        @Html.ActionLink("Back", "Course", new { applicantId = Model.ApplicantId, university = Model.University })
+    </div>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

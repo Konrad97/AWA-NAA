@@ -24,37 +24,42 @@
 
     @foreach (var item in Model.CourseHolders)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.Description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.EntryRequirements)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.Tarif)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Course.Nss)
-        </td>
-        @if (item.CanAddApplications)
-        {
+        <tr>
             <td>
-               @Html.ActionLink("Apply", "Apply", new {
-                   applicantId = Model.ApplicantId,
-                   university = Model.University,
-                   courseId = item.Course.Id,
-                   courseName = item.Course.Name
-               })
+                @Html.DisplayFor(modelItem => item.Course.Name)
             </td>
-        } else
-        {
-            <td>@Html.Raw(item.CanNotAddApplicationsReason)</td>
-        }
-    </tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.EntryRequirements)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Tarif)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Course.Nss)
+            </td>
+            @if (item.CanAddApplications)
+            {
+                <td>
+                    @Html.ActionLink("Apply", "Apply", new {
+                        applicantId = Model.ApplicantId,
+                        university = Model.University,
+                        courseId = item.Course.Id,
+                        courseName = item.Course.Name
+                    })
+                </td>
+            }
+            else
+            {
+                <td>@Html.Raw(item.CanNotAddApplicationsReason)</td>
+            }
+        </tr>
     }
 
 </table>
+
+<div>
+    @Html.ActionLink("Back", "University", new { applicantId = Model.ApplicantId })
+</div>

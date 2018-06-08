@@ -1,9 +1,9 @@
 ﻿using NAA.Service;
 using NAA.Shared.Model;
-using NAA.Shared.Service;
 using System.Collections.Generic;
 using System.Web.Services;
 using System.Web.Services.Protocols;
+using System.Xml;
 
 namespace NAA.Webservice
 {
@@ -36,7 +36,7 @@ namespace NAA.Webservice
 
             if (!_service.CanEditApplication(university, application, offerState, out string reason))
             {
-                throw new SoapException(reason, SoapException.ClientFaultCode);
+                throw new SoapException(reason, SoapException.ClientFaultCode, Context.Request.Url.AbsoluteUri);
             }
 
             application.OfferState = offerState;

@@ -244,7 +244,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Applicant\Details.cshtml" />
     <Content Include="Views\Login\Register.cshtml" />
     <Content Include="Views\Application\Details.cshtml" />
     <Content Include="Views\Apply\Apply.cshtml" />
