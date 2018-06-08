@@ -24,15 +24,17 @@ namespace NAA.Webservice
         [WebMethod]
         public List<Application> GetApplications(string university)
         {
-            var data = _applicationService.GetApplicationsByUniversity(university);
+            var applications = _applicationService.GetApplicationsByUniversity(university);
 
-            return data;
+            //break cycling reference
+            applications.ForEach(x => x.Applicant = null);
+
+            return applications;
         }
 
         [WebMethod]
         public Application SetApplicationsStatus(string university, int applicationId, OfferState offerState, string comment = "")
         {
-
             var application = _applicationService.GetApplication(applicationId);
 
             if (!_applicationService.CanEditApplication(university, application, offerState, out string reason))
@@ -43,6 +45,9 @@ namespace NAA.Webservice
             application.OfferState = offerState;
             application.Comment = comment;
             _applicationService.EditApplication(application);
+
+            //break cycling reference
+            application.Applicant = null;
 
             return application;
         }
